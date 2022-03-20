@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
-import AddUser from './components/Users/AddUser';
-import UsersList from './components/Users/UsersList';
+import Counter from './components/Counter';
+import Header from './components/Header';
+import Auth from './components/Auth';
+import UserProfile from './components/UserProfile';
+
 
 function App() {
-  const [usersList, setUsersList] = useState([]);
-
-  const addUserHandler = (uName, uAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
 
   return (
-    <div>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
-    </div>
+    <Fragment>
+      <Header />
+      {!isAuth && <Auth />}
+      {isAuth && <UserProfile />}
+      {isAuth && <Counter />}
+    </Fragment>
   );
 }
 
