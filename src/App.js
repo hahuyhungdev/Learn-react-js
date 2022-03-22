@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import AddUser from './components/Users/AddUser';
-import UsersList from './components/Users/UsersList';
+import Cart from './components/Cart/Cart';
+import Layout from './components/Layout/Layout';
+import Products from './components/Shop/Products';
 
 function App() {
-  const [usersList, setUsersList] = useState([]);
-
-  const addUserHandler = (uName, uAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
+  const showCart = useSelector((state) => state.ui.cartIsVisible);
 
   return (
-    <div>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
-    </div>
+    <Layout>
+      {showCart && <Cart />}
+      <Products />
+    </Layout>
   );
 }
 
