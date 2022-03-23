@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-import AddUser from './components/Users/AddUser';
-import UsersList from './components/Users/UsersList';
-
+import AllQuotes from './pages/AllQuotes';
+import QuoteDetail from './pages/QuoteDetail';
+import NewQuote from './pages/NewQuote';
+import HuyHung from './pages/Huyhung';
 function App() {
-  const [usersList, setUsersList] = useState([]);
-
-  const addUserHandler = (uName, uAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
-
   return (
-    <div>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
-    </div>
+    <Switch>
+      <Route path='/' exact>
+        <Redirect to='/quotes' />
+      </Route>
+      <Route path='/quotes' exact>
+        <AllQuotes />
+      </Route>
+      <Route path='/quotes/:quoteId'>
+        <QuoteDetail />
+      </Route>
+      <Route path='/new-quote'>
+        <NewQuote />
+      </Route>
+      <Route path='/huyhung' exact>
+        <HuyHung />
+      </Route>
+      <Route path='/huyhung/:IdComment'>
+        <HuyHung/>
+      </Route>
+    </Switch>
   );
 }
 
