@@ -59,5 +59,5 @@ export async function getStaticProps() {
     revalidate: 1
   }; 
 }
-
+//d
 export default HomePage;
