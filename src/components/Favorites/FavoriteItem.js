@@ -3,12 +3,12 @@ import React from 'react';
 import Card from '../UI/Card';
 import './FavoriteItem.css';
 
-const FavoriteItem = props => {
+const FavoriteItem = ({prod}) => {
   return (
     <Card style={{ marginBottom: '1rem' }}>
       <div className="favorite-item">
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
+        <h2>{prod.title}</h2>
+        <p>{prod.description}</p>
       </div>
     </Card>
   );
