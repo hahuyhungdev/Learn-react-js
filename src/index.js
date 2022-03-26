@@ -3,5 +3,5 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import App from './App';
-
-ReactDOM.render(<App />, document.getElementById('root'));
+import Async from './Async';
+ReactDOM.render(<Async />, document.getElementById('root'));

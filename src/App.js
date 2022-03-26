@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
-
-import AddUser from './components/Users/AddUser';
-import UsersList from './components/Users/UsersList';
+import logo from './logo.svg';
+import './App.css';
+import Async from './Async';
+import {useState} from 'react';
 
 function App() {
-  const [usersList, setUsersList] = useState([]);
-
-  const addUserHandler = (uName, uAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
+  const [changeText, setChangeText] = useState(false);
+  //const changeHandlerCLick
+  const changeHandlerCLick = () => {
+    setChangeText(!changeText);
+  }
 
   return (
-    <div>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
+    <div className="App">
+
+     {!changeText && <h2>xin chao</h2>}
+     {changeText ? <h2>hello</h2> : <h2>bye</h2>}
+     <button onClick={changeHandlerCLick} >change text</button>
     </div>
   );
 }
