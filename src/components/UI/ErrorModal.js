@@ -1,26 +1,22 @@
 import React from 'react';
 
-import Card from './Card';
-import Button from './Button';
-import classes from './ErrorModal.module.css';
+import './ErrorModal.css';
 
-const ErrorModal = (props) => {
+const ErrorModal = React.memo(props => {
   return (
-    <div>
-      <div className={classes.backdrop} onClick={props.onConfirm} />
-      <Card className={classes.modal}>
-        <header className={classes.header}>
-          <h2>{props.title}</h2>
-        </header>
-        <div className={classes.content}>
-          <p>{props.message}</p>
+    <React.Fragment>
+      <div className="backdrop" onClick={props.onClose} />
+      <div className="error-modal">
+        <h2>An Error Occurred!</h2>
+        <p>{props.children}</p>
+        <div className="error-modal__actions">
+          <button type="button" onClick={props.onClose}>
+            Okay
+          </button>
         </div>
-        <footer className={classes.actions}>
-          <Button onClick={props.onConfirm}>Okay</Button>
-        </footer>
-      </Card>
-    </div>
+      </div>
+    </React.Fragment>
   );
-};
+});
 
 export default ErrorModal;

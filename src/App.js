@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
-import AddUser from './components/Users/AddUser';
-import UsersList from './components/Users/UsersList';
+import Ingredients from './components/Ingredients/Ingredients';
+import Auth from './components/Auth';
+import { AuthContext } from './context/auth-context';
 
-function App() {
-  const [usersList, setUsersList] = useState([]);
+const App = props => {
+  const authContext = useContext(AuthContext);
 
-  const addUserHandler = (uName, uAge) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
+  let content = <Auth />;
+  if (authContext.isAuth) {
+    content = <Ingredients />;
+  }
 
-  return (
-    <div>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
-    </div>
-  );
-}
+  return content;
+};
 
 export default App;
